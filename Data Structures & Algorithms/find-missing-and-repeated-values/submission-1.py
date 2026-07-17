@@ -1,0 +1,22 @@
+class Solution:
+    def findMissingAndRepeatedValues(self, grid: List[List[int]]) -> List[int]:
+        ans = [0] *2
+        my_dict = {}
+        num = 0
+        n = len(grid) * len(grid)
+        print("n = ", n)
+        actual_sum = 0
+
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] in my_dict:
+                    num = grid[i][j]
+
+                my_dict[grid[i][j]] = 1
+                actual_sum += grid[i][j]
+
+        
+        total = (n * (n + 1))//2
+        temp = actual_sum - num
+        missing = total - temp
+        return [num, missing]
